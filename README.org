@@ -1,7 +1,7 @@
 * Preinstallation
-** install Ubuntu Core or Ubuntu Mate on Raspberry Pi
-** install git build-essentials python-dev
-** install ROS using apt-get and setup .bashrc accordingly
+** 1) install Ubuntu Core or Ubuntu Mate on Raspberry Pi
+** 2) install git build-essentials python-dev
+** 3) install ROS using apt-get and setup .bashrc accordingly
 * Installation
 ** 1) install PCA9685 python library from Adafruit as described at https://github.com/adafruit/Adafruit_Python_PCA9685
 ** 2) clone this repository and build with catkin
@@ -9,6 +9,9 @@
 *** $ catkin_make
 *** $ echo "source devel/setup.bash" >> ~/.bashrc
 * Usage
+** connect PCA9685 breakout/shield via i2c with Raspberry Pi as described at https://learn.adafruit.com/adafruit-16-channel-servo-driver-with-raspberry-pi/overview
+** plug in steering servo at channel 0
+** from the ESC only plug in Signal (white) and GND. Do not connect the VCC of the ESC with VCC of PCA9685 since most ESCs provide 5V at VCC to power the receiver. The ESC will normally be powered directly from the battery.
 ** launch nodes in the following order to control car with the keyboard
 *** 1) $ roscore
 *** 2) $ rosrun keyboard_input keyboard_input_gui.py
