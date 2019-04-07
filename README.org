@@ -1,0 +1,26 @@
+* Preinstallation
+** install Ubuntu Core or Ubuntu Mate on Raspberry Pi
+** install git build-essentials python-dev
+** install ROS using apt-get and setup .bashrc accordingly
+* Installation
+** 1) install PCA9685 python library from Adafruit as described at https://github.com/adafruit/Adafruit_Python_PCA9685
+** 2) clone this repository and build with catkin
+*** $ cd catkin_ws
+*** $ catkin_make
+*** $ echo "source devel/setup.bash" >> ~/.bashrc
+* Usage
+** launch nodes in the following order to control car with the keyboard
+*** 1) $ roscore
+*** 2) $ rosrun keyboard_input keyboard_input_gui.py
+*** 3) $ rosrun car_controller control.py
+**** the user who runs the scripts needs to be in the i2c group so that the control.py script can access /dev/i2c-1
+***** # usermod -a -G i2c <username>
+**** ensure that all python scripts are executable
+***** $ chmod +x src/keyboard_input/scripts/keyboard_input_gui.py
+***** $ chmod +x src/keyboard_input/scripts/keyboard_input_pynput.py
+***** $ chmod +x src/car_controller/scripts/control.py
+**** ensure that devel/setup.bash is sourced in all terminals or added to .bashrc
+** focus the GUI to capture the keyboard inputs
+** control the car using arrow keys
+* TODOs
+** add support for ps4 bluetooth gamepad

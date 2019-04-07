@@ -1,0 +1,8 @@
+prefix=/home/ubuntu/catkin_ws/devel
+
+Name: keyboard_input
+Description: Description of keyboard_input
+Version: 0.0.1
+Cflags: -I/home/ubuntu/catkin_ws/devel/include
+Libs: -L/home/ubuntu/catkin_ws/devel/lib 
+Requires: rospy std_msgs message_runtime
