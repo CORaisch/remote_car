@@ -5,7 +5,7 @@
 * Installation
 ** 1) install PCA9685 python library from Adafruit as described at https://github.com/adafruit/Adafruit_Python_PCA9685
 ** 2) clone this repository and build with catkin
-*** $ cd catkin_ws
+*** $ cd remote_car
 *** $ catkin_make
 *** $ echo "source devel/setup.bash" >> ~/.bashrc
 * Usage
