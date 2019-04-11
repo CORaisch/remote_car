@@ -8,21 +8,21 @@ PWM_STEER_CH        = 0
 PWM_THROT_CH        = 1
 PWM_FREQ            = 100
 PWM_THROT_NEUTRAL   = 600
-PWM_THROT_MAX_FWD   = 650
-PWM_THROT_MAX_BWD   = 550
+PWM_THROT_MAX_FWD   = 700
+PWM_THROT_MAX_BWD   = 530
 PWM_STEER_NEUTRAL   = 650
-PWM_STEER_MAX_LEFT  = 750
-PWM_STEER_MAX_RIGHT = 550
+PWM_STEER_MAX_LEFT  = 780
+PWM_STEER_MAX_RIGHT = 530
 
 def callback(data):
     # set throttle value
     range_t = int((PWM_THROT_MAX_FWD - PWM_THROT_MAX_BWD)/2)
-    throttle = PWM_THROT_NEUTRAL + int(data.throttle)*range_t
+    throttle = PWM_THROT_NEUTRAL + int(data.throttle*range_t)
     pwm.set_pwm(PWM_THROT_CH, 0, throttle)
 
     # set steering value
     range_s = int((PWM_STEER_MAX_LEFT - PWM_STEER_MAX_RIGHT)/2)
-    steer = PWM_STEER_NEUTRAL - int(data.steer)*range_s
+    steer = PWM_STEER_NEUTRAL - int(data.steer*range_s)
     pwm.set_pwm(PWM_STEER_CH, 0, steer)
 
     # debug

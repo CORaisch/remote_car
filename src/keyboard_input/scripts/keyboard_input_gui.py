@@ -47,7 +47,6 @@ def display(str):
 
 # main section
 def main_loop():
-
     # init ros communication
     pub = rospy.Publisher("ctrl_cmd", ctrl_cmd, queue_size=10) # topic name: /ctrl_cmd
     rospy.init_node("keyboard_input", anonymous=True) # node name: /keyboard_input
@@ -55,7 +54,7 @@ def main_loop():
 
     # main loop
     running = True
-    while running:
+    while (not rospy.is_shutdown()) and running:
         # update keyboard input map
         pygame.event.pump()
         keys = pygame.key.get_pressed()
@@ -115,7 +114,7 @@ if __name__ == "__main__":
     pygame.display.set_caption("robocar keyboard input")
     screen.fill(bg_color)
     font = pygame.font.Font(None, 17)
-    try:
-        main_loop()
-    except rospy.ROSInterruptException:
-        pass
+    # start main loop
+    main_loop()
+    # quit thread on after exiting down main loop
+    rospy.signal_shutdown('Quit')
