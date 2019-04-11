@@ -1,29 +1,56 @@
-* Preinstallation
+* General Installation
 ** 1) install Ubuntu Core or Ubuntu Mate on Raspberry Pi
 ** 2) install git build-essentials python-dev
 ** 3) install ROS using apt-get and setup .bashrc accordingly
-* Installation
-** 1) install PCA9685 python library from Adafruit as described at https://github.com/adafruit/Adafruit_Python_PCA9685
-** 2) clone this repository and build with catkin
+** 4) install PCA9685 python library from Adafruit as described at https://github.com/adafruit/Adafruit_Python_PCA9685
+* DS4 Installation
+** 1) setup Bluetooth according to https://wiki.ubuntuusers.de/Bluetooth/Einrichten
+*** # apt-get install bluetooth bluez bluez-tool libbluetooth3 libbluetooth-dev 
+*** # service bluetooth restart
+** 2) install ROS joy package for arbitrary joystick inputs
+*** # apt-get install ros-melodic-joy
+** 3) install ds4drv according to https://github.com/chrippa/ds4drv
+** 4) install ps4_ros according to https://github.com/solbach/ps4-ros
+* Project Setup
+** clone this repository and build with catkin
+*** $ git clone https://github.com/CORaisch/remote_car
 *** $ cd remote_car
 *** $ catkin_make
 *** $ echo "source devel/setup.bash" >> ~/.bashrc
-* Usage
+* Control the Car using Keyboard
 ** connect PCA9685 breakout/shield via i2c with Raspberry Pi as described at https://learn.adafruit.com/adafruit-16-channel-servo-driver-with-raspberry-pi/overview
 ** plug in steering servo at channel 0
-** from the ESC only plug in Signal (white) and GND. Do not connect the VCC of the ESC with VCC of PCA9685 since most ESCs provide 5V at VCC to power the receiver. The ESC will normally be powered directly from the battery.
-** launch nodes in the following order to control car with the keyboard
+** from the ESC only plug in Signal (white) and GND at channel 1. Do not connect the VCC of the ESC with VCC of PCA9685 since most ESCs provide 5V at VCC to power the receiver. The ESC will normally be powered directly from the battery.
+** launch nodes in the following order to control the car with the keyboard
 *** 1) $ roscore
-*** 2) $ rosrun keyboard_input keyboard_input_gui.py
+*** 2) $ rosrun keyboard_controller keyboard_input_gui.py
 *** 3) $ rosrun car_controller control.py
 **** the user who runs the scripts needs to be in the i2c group so that the control.py script can access /dev/i2c-1
 ***** # usermod -a -G i2c <username>
 **** ensure that all python scripts are executable
-***** $ chmod +x src/keyboard_input/scripts/keyboard_input_gui.py
-***** $ chmod +x src/keyboard_input/scripts/keyboard_input_pynput.py
+***** $ chmod +x src/keyboard_controller/scripts/keyboard_input_gui.py
+***** $ chmod +x src/keyboard_controller/scripts/keyboard_input_pynput.py
 ***** $ chmod +x src/car_controller/scripts/control.py
 **** ensure that devel/setup.bash is sourced in all terminals or added to .bashrc
 ** focus the GUI to capture the keyboard inputs
 ** control the car using arrow keys
+* Control the Car using PS4 Controller
+** connect PCA9685 breakout/shield via i2c with Raspberry Pi as described at https://learn.adafruit.com/adafruit-16-channel-servo-driver-with-raspberry-pi/overview
+** plug in steering servo at channel 0
+** from the ESC only plug in Signal (white) and GND at channel 1. Do not connect the VCC of the ESC with VCC of PCA9685 since most ESCs provide 5V at VCC to power the receiver. The ESC will normally be powered directly from the battery.
+** launch nodes in the following order to control car with DS4 controller
+*** 1) $ roscore
+*** 2) $ roslaunch ps4_ros ps4.launch
+**** hold down SHARE and PS-BUTTON for ~5 sec. to bring controller into pairing mode
+**** wait until ros_ps4 prompts you to calibrate the controller
+**** hold down L2 and R2 till controller is calibrated
+*** 3) $ rosrun ds4_controller ds4_input.py
+*** 4) $ rosrun car_controller control.py
+**** the user who runs the scripts needs to be in the i2c group so that the control.py script can access /dev/i2c-1
+***** # usermod -a -G i2c <username>
+**** ensure that all python scripts are executable
+***** $ chmod +x src/car_controller/scripts/control.py
+***** $ chmod +x src/ds4_controller/scripts/ds4_input.py
+**** ensure that devel/setup.bash is sourced in all terminals or added to .bashrc
 * TODOs
-** add support for ps4 bluetooth gamepad
+** write launchfiles that running the code becomes easier
