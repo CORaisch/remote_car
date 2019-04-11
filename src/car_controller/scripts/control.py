@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import rospy
 import Adafruit_PCA9685
-from keyboard_input.msg import ctrl_cmd
+from keyboard_controller.msg import ctrl_cmd
 
 # set HW constants -> TODO tune max values
 PWM_STEER_CH        = 0

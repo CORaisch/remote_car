@@ -8,4 +8,4 @@
 (ros::load-ros-package "roscpp")
 (ros::load-ros-package "rosgraph_msgs")
 (ros::load-ros-package "std_msgs")
-(ros::load-ros-package "keyboard_input")
+(ros::load-ros-package "keyboard_controller")
