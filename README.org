@@ -10,11 +10,14 @@
 ** 2) install ROS joy package for arbitrary joystick inputs
 *** # apt-get install ros-melodic-joy
 ** 3) install ds4drv according to https://github.com/chrippa/ds4drv
-** 4) install ps4_ros according to https://github.com/solbach/ps4-ros
 * Project Setup
 ** clone this repository and build with catkin
 *** $ git clone https://github.com/CORaisch/remote_car
-*** $ cd remote_car
+*** $ cd remote_car/src
+*** $ git clone https://github.com/solbach/ps4-ros
+**** follow "Installation" section in README.md to find out the dev the controller will be bind to
+**** set /dev/jsX inside the ps4.launch script
+*** $ cd ..
 *** $ catkin_make
 *** $ echo "source devel/setup.bash" >> ~/.bashrc
 * Control the Car using Keyboard
