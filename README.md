@@ -64,6 +64,7 @@ rosrun car_controller control.py
 ```
 
 # Notes
+* for this project a 1:10 scale Monster Truck from Himoto was used, similar to [this](https://www.amazon.de/-/en/Himoto-10-Radio-American-Technology-Assembly/dp/B01C327ELA) model. It is however not required to use this model in particular. When another model is used, ensure that the ESC is decoupled from the receiver (cheap toys will often have them combined on a single proprietary chip). Also every manufacturer will likely have their own ESC protocols, so for any other model than the one above the protocol must be figured out first. These electronics usually use PWM signals for communication, therefore reverse engineering the protocol should be easy. This can be done with a oscilloscope and a suitable receiver. The PWM parameters then need to be updated in `src/car_controller/scripts/contorl.py`.
 * the user who runs the scripts needs to be in the i2c group so that the `control.py` script can access `/dev/i2c-1`
 ```bash
 usermod -a -G i2c <username>
