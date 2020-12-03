@@ -1,8 +1,0 @@
-prefix=/home/ubuntu/catkin_ws/devel
-
-Name: ps4_ros
-Description: Description of ps4_ros
-Version: 0.0.1
-Cflags: 
-Libs: -L/home/ubuntu/catkin_ws/devel/lib 
-Requires: 

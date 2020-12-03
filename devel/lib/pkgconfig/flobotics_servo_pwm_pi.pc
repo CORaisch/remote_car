@@ -1,8 +1,0 @@
-prefix=/home/ubuntu/catkin_ws/devel
-
-Name: flobotics_servo_pwm_pi
-Description: Description of flobotics_servo_pwm_pi
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/ubuntu/catkin_ws/devel/lib 
-Requires: 
