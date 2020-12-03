@@ -18,6 +18,13 @@ service bluetooth restart
 apt-get install ros-melodic-joy
 ```
 3. install `ds4drv` according to <https://github.com/chrippa/ds4drv>. It is a Linux driver for the PS4 controller.
+```bash
+sudo pip install ds4drv
+```
+`ds4drv` to create requires root permissions in order to create and write to `/dev/input/jsX`. The `ps4.launch` launch file will later call `ds4drv` from userland and therefore we need to add udev rules by copying the file [`data/50-ds4drv.rules`](data/50-ds4drv.rules) to `/etc/udev/rules.d/`:
+```bash
+sudo mv data/50-ds4drv.rules /etc/udev/rules.d/
+```
 
 # Project Setup
 1. clone repositories
@@ -26,7 +33,7 @@ git clone https://github.com/CORaisch/remote_car
 cd remote_car/src
 git clone https://github.com/solbach/ps4-ros
 ```
-2. follow "Installation" section in readme of `ps4-ros` to find out the dev the controller will be bind to and set `/dev/jsX` inside the `ps4.launch` script accordingly
+2. follow "Installation" section in readme of `ps4-ros` to find out the dev the controller will be bind to and set `/dev/input/jsX` inside the `ps4.launch` script accordingly
 3. build with catkin
 ```bash
 cd .. # home dir of this repo
