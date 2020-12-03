@@ -18,11 +18,13 @@ def callback(data):
     # set throttle value
     range_t = int((PWM_THROT_MAX_FWD - PWM_THROT_MAX_BWD)/2)
     throttle = PWM_THROT_NEUTRAL + int(data.throttle*range_t)
+    # throttle = (data.throttle * PWM_THROT_MAX_FWD if data.throttle > 0.0 else data.throttle * PWM_THROT_MAX_BWD) + PWM_THROT_NEUTRAL
     pwm.set_pwm(PWM_THROT_CH, 0, throttle)
 
     # set steering value
     range_s = int((PWM_STEER_MAX_LEFT - PWM_STEER_MAX_RIGHT)/2)
     steer = PWM_STEER_NEUTRAL - int(data.steer*range_s)
+    # steer = (data.steer * PWM_STEER_MAX_RIGHT if data.steer > 0.0 else data.steer * PWM_STEER_MAX_LEFT) + PWM_STEER_NEUTRAL
     pwm.set_pwm(PWM_STEER_CH, 0, steer)
 
     # debug
