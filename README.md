@@ -1,5 +1,5 @@
 # General Installation
-1. install [Ubuntu Core](https://ubuntu.com/download/raspberry-pi-core) or [Ubuntu Mate](https://ubuntu-mate.org/download/arm64/) on Raspberry Pi.
+1. install an official [Ubuntu Build](https://ubuntu.com/download/raspberry-pi) or [Ubuntu Mate](https://ubuntu-mate.org/download/arm64/) on Raspberry Pi.
 2. install essential build tools
 ```bash
 apt-get update
