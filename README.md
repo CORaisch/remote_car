@@ -3,7 +3,7 @@
 2. install essential build tools
 ```bash
 apt-get update
-apt-get install git build-essentials python-dev
+apt-get install git build-essentials i2c-tools
 ```
 3. install ROS and setup .bashrc accordingly. See the [official ROS wiki](http://wiki.ros.org/Documentation) for detailed instructions
 4. install PCA9685 python library from Adafruit as described at <https://github.com/adafruit/Adafruit_Python_PCA9685>
