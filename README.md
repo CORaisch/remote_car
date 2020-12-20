@@ -13,13 +13,13 @@ apt-get install git build-essentials i2c-tools
 apt-get install bluetooth bluez bluez-tool libbluetooth3 libbluetooth-dev 
 service bluetooth restart
 ```
-2. install ROS joy package for arbitrary joystick inputs. In the example below ROS-Melodic is used, adapt it if other version is used.
+2. install ROS joy package for arbitrary joystick inputs. In the example below ROS-Noetic is used, adapt it if other version is used.
 ```bash
-apt-get install ros-melodic-joy
+apt-get install ros-noetic-joy
 ```
 3. install `ds4drv` according to <https://github.com/chrippa/ds4drv>. It is a Linux driver for the PS4 controller.
 ```bash
-sudo pip install ds4drv
+sudo pip3 install ds4drv
 ```
 `ds4drv` to create requires root permissions in order to create and write to `/dev/input/jsX`. The `ps4.launch` launch file will later call `ds4drv` from userland and therefore we need to add udev rules by copying the file [`data/50-ds4drv.rules`](data/50-ds4drv.rules) to `/etc/udev/rules.d/`:
 ```bash
@@ -58,7 +58,6 @@ rosrun car_controller control.py
 # Control the Car using PS4 Controller
 1. start PS4 ROS-node. This node will pack the commands of the DS4 driver into ROS-messages.
 ```bash
-roscore
 roslaunch ps4_ros ps4.launch
 ```
 2. hold down SHARE and PS-BUTTON for ~5 seconds to bring controller into pairing mode
