@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 ########################################################################################################
 # NOTE this project is an experiment to find out how to read keyboard inputs with python.              #
